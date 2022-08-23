@@ -1,16 +1,13 @@
+create database xadrez;
+use xadrez;
 CREATE TABLE JOGADAS  (
   id_movimento INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   Partida_jogadores_idjogadores  INTEGER UNSIGNED NOT NULL,
   Partida_idPartida INTEGER UNSIGNED NOT NULL,
   jogadores_idjogadores  INTEGER UNSIGNED NOT NULL,
   MOVIMENTOS VARCHAR(10) BINARY NOT NULL,
-  Move_esp._idMove_esp. INTEGER UNSIGNED NULL,
   temp_jogada TIME NOT NULL,
-  PRIMARY KEY(id_movimento),
-  INDEX JOGADAS _FKIndex2(Move_esp._idMove_esp.),
-  INDEX JOGADAS _FKIndex3(jogadores_idjogadores ),
-  INDEX JOGADAS _FKIndex4(jogadores_idjogadores ),
-  INDEX JOGADAS _FKIndex4(Partida_idPartida, Partida_jogadores_idjogadores )
+  PRIMARY KEY(id_movimento)
 );
 
 CREATE TABLE jogadores (
@@ -20,17 +17,15 @@ CREATE TABLE jogadores (
   torneio_idtorneio INTEGER UNSIGNED NOT NULL,
   nome  VARCHAR(45) NULL,
   pais  VARCHAR(20) NULL,
-  data de nascimento DATE NULL,
-  PRIMARY KEY(idjogadores ),
-  INDEX jogadores _FKIndex1(torneio_idtorneio),
-  INDEX jogadores _FKIndex2(Partida_idPartida, Partida_jogadores_idjogadores )
+  dat_nascimento DATE NULL,
+  PRIMARY KEY(idjogadores )
 );
 
-CREATE TABLE Move_esp. (
-  idMove_esp. INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+CREATE TABLE Move_esp (
+  idMove_esp INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   abr_esp VARCHAR(10) NULL,
   exp_move TEXT NULL,
-  PRIMARY KEY(idMove_esp.)
+  PRIMARY KEY(idMove_esp)
 );
 
 CREATE TABLE Partida (
@@ -43,15 +38,15 @@ CREATE TABLE Partida (
   INDEX Partida_FKIndex1(jogadores_idjogadores )
 );
 
-CREATE TABLE Peças (
+Create Table 
+
+CREATE TABLE PeÃ§as (
   codigopecas  INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  JOGADAS _id_movimento INTEGER UNSIGNED NOT NULL,
   nome_peca VARCHAR(10) NULL,
   Sigla CHAR(2) NULL,
   quantidade INTEGER UNSIGNED NULL,
   rating INTEGER UNSIGNED NULL,
-  PRIMARY KEY(codigopecas ),
-  INDEX PEÇAS _FKIndex1(JOGADAS _id_movimento)
+  PRIMARY KEY(codigopecas )
 );
 
 CREATE TABLE torneio (
@@ -62,4 +57,5 @@ CREATE TABLE torneio (
   PRIMARY KEY(idtorneio)
 );
 
+insert into torneio values ()
 
