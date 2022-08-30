@@ -6,30 +6,14 @@ CREATE TABLE JOGADAS (
   temp_jogada TIME NOT NULL,
   PRIMARY KEY(id_movimento)
 );
-
-CREATE TABLE Jogador1 (
-  idJogador1 INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  jogadores_idjogadores  INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(idJogador1),
-  INDEX Jogador1_FKIndex1(jogadores_idjogadores )
-);
-
-CREATE TABLE jogador2 (
-  idjogador2 INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
-  jogadores_idjogadores  INTEGER UNSIGNED NOT NULL,
-  PRIMARY KEY(idjogador2),
-  INDEX jogador2_FKIndex1(jogadores_idjogadores )
-);
-
 CREATE TABLE jogadores (
   idjogadores  INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
   torneio_idtorneio INTEGER UNSIGNED NOT NULL,
   nome  VARCHAR(45) NULL,
   pais  VARCHAR(20) NULL,
   data_nascimento DATE NULL,
-  PRIMARY KEY(idjogadores ),
-  INDEX jogadores_FKIndex1(torneio_idtorneio)
-);
+  PRIMARY KEY(idjogadores )
+  ); 
 
 CREATE TABLE Partida (
   idPartida INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -38,16 +22,8 @@ CREATE TABLE Partida (
   Jogador1_idJogador1 INTEGER UNSIGNED NOT NULL,
   Mesa INTEGER UNSIGNED NULL,
   data_hora DATETIME NULL,
-  PRIMARY KEY(idPartida),
- INDEX Partida_FKIndex1(Jogador1_idJogador1),
- INDEX Partida_FKIndex2(jogador2_idjogador2),
- INDEX Partida_FKIndex3(JOGADAS_id_movimento)
+  PRIMARY KEY(idPartida)
 );
-alter table Partida
-drop column JOGADAS_id_movimento,
-drop column jogador2_idjogador2,
-drop column jogador1_idJogador1;
- 
 
 CREATE TABLE Pecas (
   codigopecas  INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -55,8 +31,7 @@ CREATE TABLE Pecas (
   nome_peca VARCHAR(10) NULL,
   Sigla CHAR(2) NULL,
   quantidade INTEGER UNSIGNED NULL,
-  PRIMARY KEY(codigopecas),
-  INDEX PEÇAS_FKIndex1(JOGADAS_id_movimento)
+  PRIMARY KEY(codigopecas)
 );
 
 CREATE TABLE torneio (
@@ -92,4 +67,28 @@ insert into jogadores (nome, pais, data_nascimento) values
 ("Larissa", "Brasil", "1998-06-04"),
 ("Kelvin", "Canada","1999-02-25");
 
+CREATE TABLE Jogador1 (
+  idJogador1 INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  jogadores_idjogadores  INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(idJogador1),
+  INDEX Jogador1_FKIndex1(jogadores_idjogadores )
+);
+
+CREATE TABLE jogador2 (
+  idjogador2 INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+  jogadores_idjogadores  INTEGER UNSIGNED NOT NULL,
+  PRIMARY KEY(idjogador2),
+  INDEX jogador2_FKIndex1(jogadores_idjogadores )
+);
 select *from Partida;
+
+alter table Partida
+add INDEX Partida_FKIndex1(Jogador1_idJogador1),
+add INDEX Partida_FKIndex2(jogador2_idjogador2),
+add INDEX Partida_FKIndex3(JOGADAS_id_movimento);
+
+alter table Pecas
+add INDEX Pecas_FKIndex1(JOGADAS_id_movimento);
+
+alter table jogadores
+add  INDEX jogadores_FKIndex1(torneio_idtorneio);
